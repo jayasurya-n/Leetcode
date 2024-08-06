@@ -1,0 +1,11 @@
+5
+aa
+a
+aa
+*
+cb
+?a
+aab
+c*a*b
+adceb
+*a*b

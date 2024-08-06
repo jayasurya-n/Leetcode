@@ -1,0 +1,20 @@
+from typing import List,Optional
+import sys
+class Solution:
+    def minimumDifference(self, nums: List[int]) -> int:
+        
+        pass
+
+
+
+
+
+
+
+# time complexity: O()
+# space complexity: O()
+t = int(input().strip())
+if __name__ == "__main__":
+    for i in range(t):
+        nums = list(map(int,input().strip().split()))
+        print(Solution().minimumDifference(nums))
