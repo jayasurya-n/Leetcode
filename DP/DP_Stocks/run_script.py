@@ -17,20 +17,25 @@ def main():
     with open('input.txt', 'r') as infile:
         input_data = infile.read()
 
-    # Execute the script and capture the output
     try:
+        # Execute the script and capture the output
         result = subprocess.run(
             [sys.executable, script_name],
             input=input_data,
             text=True,
-            capture_output=True,
-            check=True
+            capture_output=True
         )
-        # Write the output to output.txt
+        # Write the standard output to output.txt
         with open('output.txt', 'w') as outfile:
             outfile.write(result.stdout)
+
+        # Print any error messages to the terminal
+        if result.stderr:
+            print(f"Error running {script_name}:\n{result.stderr}", file=sys.stderr)
+
     except subprocess.CalledProcessError as e:
-        print(f"Error running {script_name}: {e.stderr}")
+        # Print the error message to the terminal
+        print(f"Error running {script_name}:\n{e.stderr}", file=sys.stderr)
 
 if __name__ == "__main__":
     main()
