@@ -1,7 +1,2 @@
-One Hundred Twenty Three
-Twelve Thousand Three Hundred Forty Five
-One Million Two Hundred Thirty Four Thousand Five Hundred Sixty Seven
-Zero
-One Thousand
-One Million
-One Million Ten
+[[1, 1, 6], [1, 2, 5], [1, 7], [2, 6]]
+[[1, 2, 2], [5]]
