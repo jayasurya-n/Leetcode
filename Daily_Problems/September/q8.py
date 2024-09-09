@@ -12,7 +12,7 @@ class Solution:
         
         q = len//k
         r = len%k
-        
+        l
         ans = [None for _ in range(k)]
         
         temp = head
