@@ -22,8 +22,8 @@ class Solution:
             if(num*10<=n):num*=10
             else:
                 if(num==n):num//=10
+                while(num%10==9):num//=10
                 num+=1
-                while(num%10==0):num//=10
         return ans
                 
 # time complexity: O(n),O(n)
