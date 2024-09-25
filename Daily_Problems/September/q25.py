@@ -3,22 +3,26 @@ from collections import deque, defaultdict
 import sys, math, heapq
 
 class Solution:
-    def sumPrefixScores(self, words: List[str]) -> List[int]:
+    def sumPrefixScores(self, words: List[str]):
         hash = dict()
         for word in words:
-            for i in range(1,len(word)+1):
-                hash[word[:i]] = hash.get(word[:i],0)+1
+            prefix = ""
+            for ch in word:
+                prefix+=ch
+                hash[prefix] = hash.get(prefix,0)+1
         
         ans = []
         for word in words:
             cnt = 0
-            for i in range(1,len(word)+1):
-                cnt+=hash.get(word[:i],0)
+            prefix = ""
+            for ch in word:
+                prefix+=ch
+                cnt+=hash.get(prefix,0)
             ans.append(cnt)
         return ans
 
-# time complexity: O()
-# space complexity: O()
+# time complexity: O(nl)
+# space complexity: O(nl)
 if __name__ == "__main__":
     for _ in range(int(input().strip())):
         n = int(input().strip())
