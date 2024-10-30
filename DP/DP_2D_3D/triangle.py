@@ -1,65 +1,26 @@
 from typing import List,Optional
-import sys
+from collections import deque, defaultdict
+import sys, math, heapq
+
 class Solution:
-    # def findPathSum(self,i,j,dp,triangle):
-    #     if(i==0 and j==0):return triangle[0][0]
-    #     if(j<0 or j>=len(triangle[i])):return sys.maxsize
-
-    #     if(dp[i][j]!=-1):return dp[i][j]
-    #     dp[i][j] = triangle[i][j] + min(self.findPathSum(i-1,j,dp,triangle),self.findPathSum(i-1,j-1,dp,triangle))
-    #     return dp[i][j]
-
-    # def minimumTotal(self, triangle: List[List[int]]) -> int:
-    #     dp = []
-    #     for i in range(len(triangle)):
-    #         dp.append([-1]*len(triangle[i]))
-        
-    #     ans = sys.maxsize
-    #     for j in range(len(triangle[-1])): 
-    #         ans = min(ans,self.findPathSum(len(triangle)-1,j,dp,triangle))
-    #     return ans
-    
-    # def minimumTotal(self, triangle: List[List[int]]) -> int:
-    #     dp = []
-    #     for i in range(len(triangle)):
-    #         dp.append([-1]*len(triangle[i]))
-        
-    #     dp[0][0] = triangle[0][0]
-    #     for i in range(1,len(triangle)):
-    #         for j in range(len(triangle[i])):
-    #             if(j==0):dp[i][j] = triangle[i][j] + dp[i-1][j]
-    #             elif(j==len(triangle[i-1])):dp[i][j] = triangle[i][j] + dp[i-1][j-1]
-    #             else:dp[i][j] = triangle[i][j] + min(dp[i-1][j],dp[i-1][j-1])
-    #     return min(dp[-1])
-
-    # def minimumTotal(self, triangle: List[List[int]]) -> int:
-        
-    #     prev = [triangle[0][0]]
-    #     for i in range(1,len(triangle)):
-    #         curr = [-1]*len(triangle[i])
-    #         for j in range(len(triangle[i])):
-    #             if(j==0):curr[j] = triangle[i][j] + prev[j]
-    #             elif(j==len(triangle[i-1])):curr[j] = triangle[i][j] + prev[j-1]
-    #             else:curr[j] = triangle[i][j] + min(prev[j],prev[j-1])
-    #         prev = curr
-    #     return min(prev)
-
     def minimumTotal(self, triangle: List[List[int]]) -> int:
+        h = len(triangle)
+        dp = []
+        for level in range(h):dp.append([0]*len(triangle[level]))
+        dp[0][0] = triangle[0][0]
+        
+        for level in range(1,h):
+            for j in range(len(dp[level])):
+                ans = sys.maxsize
+                if(j!=len(dp[level])-1):ans = min(ans,triangle[level][j]+dp[level-1][j])
+                if(j!=0):ans = min(ans,triangle[level][j]+dp[level-1][j-1])
+                dp[level][j] = ans
+        return min(dp[h-1])
 
-        for i in range(1,len(triangle)):
-            for j in range(len(triangle[i])):
-                if(j==0):triangle[i][j] = triangle[i][j] + triangle[i-1][j]
-                elif(j==len(triangle[i-1])):triangle[i][j] = triangle[i][j] + triangle[i-1][j-1]
-                else:triangle[i][j] = triangle[i][j] + min(triangle[i-1][j],triangle[i-1][j-1])
-        return min(triangle[-1])
-
-
-
-# time complexity: O(n^2), O(n^2), O(n^2), O(n^2)
-# space complexity: O(n^2+(n)(stack space)), O(n^2), O(n), O(1)
-t = int(input().strip())
+# time complexity: O(size)
+# space complexity: O(size)
 if __name__ == "__main__":
-    for i in range(t):
+    for _ in range(int(input().strip())):
         m = int(input().strip())
         triangle = [list(map(int,input().strip().split())) for _ in range(m)]
         print(Solution().minimumTotal(triangle))
