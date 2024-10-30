@@ -1,35 +1,23 @@
 from typing import List,Optional
-import sys
-from sys import setrecursionlimit
-setrecursionlimit(10**9)
+from collections import deque, defaultdict
+import sys, math, heapq
 
 class Solution:
     def minimumEnergy(self, height, n):
-        dp = [-1]*(n)
-        dp[0] = 0
-        for i in range(1,n):
-            dp[i] = abs(height[i]-height[i-1])+dp[i-1]
-            if(i>=2):dp[i] = min(dp[i],abs(height[i]-height[i-2])+dp[i-2])
-        return dp[n-1]
-
-    # def findminEnergy(self,n,dp,height):
-    #     if(n==0):return 0
-
-    #     if(dp[n]!=-1):return dp[n]
-    #     dp[n] = self.findminEnergy(n-1,dp,height)+abs(height[n]-height[n-1])
-    #     if(n>=2):dp[n] = min(dp[n],self.findminEnergy(n-2,dp,height)+abs(height[n]-height[n-2]))
-    #     return dp[n]
-             
-    # def minimumEnergy(self, height, n):
-    #     dp = [-1]*(n)
-    #     return self.findminEnergy(n-1,dp,height)
-
-
-# time complexity: O(n),O(n)
-# space complexity: O(n), O(n+n(stack space))
-t = int(input().strip())
+        if(n<=1):return 0
+        dp = [sys.maxsize]*(n+1)
+        dp[1] = 0
+        dp[2] = abs(height[1]-height[0])
+         
+        for i in range(3,n+1):
+            dp[i] = min(dp[i],dp[i-1]+abs(height[i-1]-height[i-2]),
+                        dp[i-2]+abs(height[i-1]-height[i-3]))
+        return dp[n]
+            
+# time complexity: O(n)
+# space complexity: O(n)
 if __name__ == "__main__":
-    for i in range(t):
+    for _ in range(int(input().strip())):
         n = int(input().strip())
         height = list(map(int,input().strip().split()))
         print(Solution().minimumEnergy(height,n))

@@ -1,29 +1,24 @@
 from typing import List,Optional
-import sys
+from collections import deque, defaultdict
+import sys, math, heapq
+
 class Solution:
-    def maxMoney(self,n,nums):
+    def rob(self, nums: List[int]) -> int:
+        if(len(nums)==1):return nums[0] 
+        def maxAmount(nums):
             n = len(nums)
             if(n==1):return nums[0]
-            lastPrev,prev = nums[0],max(nums[0],nums[1])
-            ans = prev
+            dp = [0]*n
+            dp[0] = nums[0]
+            dp[1] = max(nums[0],nums[1])
             for i in range(2,n):
-                ans = max(nums[i]+lastPrev,prev)
-                lastPrev = prev
-                prev = ans
-            return prev
-
-
-    def rob(self, nums: List[int]) -> int:
-        n = len(nums)
-        if(n==1):return nums[0]
-        return max(self.maxMoney(n-1,nums[1:]),self.maxMoney(n-1,nums[:-1]))
-    
-
+                dp[i] = max(dp[i],dp[i-2]+nums[i],dp[i-1])
+            return dp[n-1]
+        return max(maxAmount(nums[:-1]),maxAmount(nums[1:]))
 
 # time complexity: O(n)
-# space complexity: O(n+n)
-t = int(input().strip())
+# space complexity: O(n)
 if __name__ == "__main__":
-    for i in range(t):
+    for _ in range(int(input().strip())):
         nums = list(map(int,input().strip().split()))
         print(Solution().rob(nums))
