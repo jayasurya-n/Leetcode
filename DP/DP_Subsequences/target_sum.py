@@ -1,46 +1,24 @@
 from typing import List,Optional
-import sys
+from collections import deque, defaultdict
+import sys, math, heapq
+
 class Solution:
-    # def findTargetSumWays(self, nums: List[int], target: int) -> int:
-    #     n = len(nums)
-    #     total = sum(nums)
-    #     dp = dict()
-    #     if(nums[0]!=0):
-    #         dp[(0,nums[0])] = 1 
-    #         dp[(0,-nums[0])] = 1
-    #     else:dp[(0,0)]=2
-    #     for ind in range(1,n):
-    #         for t in range(-total,total+1):
-    #             dp[(ind,t)] = dp.get((ind-1,t-nums[ind]),0)+dp.get((ind-1,t+nums[ind]),0) 
-    #     print(dp)
-    #     return dp.get((n-1,target),0)
+    def findTargetSumWays(self, nums: List[int], target: int) -> int:
+        n = len(nums)
+        totalSum = sum(nums)
+        if(target<-totalSum or target>totalSum):return 0
+        offset = totalSum
+        dp = [[0]*(2*totalSum+1) for _ in range(n+1)]
+        dp[0][offset]=1
+        
+        for i in range(1,n+1):
+            for s in range(-totalSum,totalSum+1):
+                if(s+nums[i-1]<=totalSum):dp[i][s+offset]+=dp[i-1][s+nums[i-1]+offset]
+                if(s-nums[i-1]>=-totalSum):dp[i][s+offset]+=dp[i-1][s-nums[i-1]+offset]
+        return dp[n][target+offset]
 
-    def findTargetSumWays(self, arr: List[int], d: int) -> int:
-        n = len(arr)
-        totalSum = sum(arr)
-        if((totalSum+d)%2==1):return 0
-        if(d>totalSum):return 0
-        target = (totalSum-d)//2
-
-
-        dp = [[0]*(target+1) for _ in range(n)]
-
-        for i in range(n):dp[i][0] = 1
-        if(arr[0]<=target):
-            if(arr[0]==0):dp[0][arr[0]]=2
-            else:dp[0][arr[0]] = 1
-
-        for i in range(1,n):
-            for s in range(0,target+1):
-                dp[i][s] = dp[i-1][s]
-                if(arr[i]<=s):
-                    dp[i][s] = (dp[i-1][s] + dp[i-1][s-arr[i]])
-
-        return dp[n-1][target]
-
-
-# time complexity: O(sum*n), O(n*sum)
-# space complexity: O(sum*n), O(n*sum)
+# time complexity: O(n*sum)
+# space complexity: O(n*sum)
 if __name__ == "__main__":
     for _ in range(int(input().strip())):
         nums = list(map(int,input().strip().split()))

@@ -1,26 +1,20 @@
 from typing import List,Optional
-import sys
+from collections import deque, defaultdict
+import sys, math, heapq
+
 class Solution:
     def change(self, amount: int, coins: List[int]) -> int:
-        n = len(coins)
-        dp = [[0]*(amount+1) for _ in range(n)]
-        for i in range(n):dp[i][0] = 0
-        for i in range(0,amount+1):
-            if(i%coins[0]==0):dp[0][i] = 1
+        dp = [0]*(amount+1)
+        dp[0] = 1
         
-        for ind in range(1,n):
-            for amou in range(0,amount+1):
-                dp[ind][amou] = dp[ind-1][amou]
-                if(coins[ind]<=amou):
-                    dp[ind][amou]+=dp[ind][amou-coins[ind]]
+        for coin in coins:
+            for i in range(coin,amount+1):dp[i]+=dp[i-coin]
+        return dp[amount]
 
-        return dp[n-1][amount]
-        
-        
-# time complexity: O(n*amount)
-# space complexity: O(n*amount)
+# time complexity: O(mn)
+# space complexity: O(m)
 if __name__ == "__main__":
     for _ in range(int(input().strip())):
-        amount = int(input().strip())
         coins = list(map(int,input().strip().split()))
-        print(Solution().change(amount,coins))
+        amount = int(input().strip())
+        print(Solution().coinChange(coins,amount))

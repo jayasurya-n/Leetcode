@@ -1,20 +1,15 @@
 from typing import List,Optional
-import sys
+from collections import deque, defaultdict
+import sys, math, heapq
+
 class Solution:
     def minimumDifference(self, nums: List[int]) -> int:
-        
         pass
-
-
-
-
-
 
 
 # time complexity: O()
 # space complexity: O()
-t = int(input().strip())
 if __name__ == "__main__":
-    for i in range(t):
+    for _ in range(int(input().strip())):
         nums = list(map(int,input().strip().split()))
         print(Solution().minimumDifference(nums))
