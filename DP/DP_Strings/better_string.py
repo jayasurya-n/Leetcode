@@ -21,8 +21,6 @@ class Solution:
             last[s[i-1]] = i
         return dp[n]
 
-
-
     def betterString(self, str1, str2):
         c1 = self.countSubsets(str1)
         c2 = self.countSubsets(str2)

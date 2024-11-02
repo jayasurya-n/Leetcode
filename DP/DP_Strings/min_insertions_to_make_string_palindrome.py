@@ -1,25 +1,22 @@
 from typing import List,Optional
-import sys
+from collections import deque, defaultdict
+import sys, math, heapq
+
 class Solution:
     def minInsertions(self, s: str) -> int:
-        l = len(s)
-        rev = s[::-1]
-        dp = [[0]*(l+1) for _ in range(l+1)]
-
-        for j in range(0,l):dp[0][j] = 0
-        for i in range(0,l):dp[i][0] = 0
+        n = len(s)
+        dp = [[0]*n for _ in range(n)]
+        for i in range(n):dp[i][i]=1
         
-        for i in range(1,l+1):
-            for j in range(1,l+1):
-                if(s[i-1]==rev[j-1]):
-                    dp[i][j] = dp[i-1][j-1]+1
-                else:
-                    dp[i][j] = max(dp[i-1][j],dp[i][j-1])
-        return l - dp[l][l]
+        for l in range(2,n+1):
+            for i in range(n-l+1):
+                j = i+l-1
+                if(s[i]==s[j]):dp[i][j] = dp[i+1][j-1]+2
+                else:dp[i][j] = max(dp[i+1][j],dp[i][j-1])
+        return n-dp[0][n-1]
 
-
-# time complexity: O(n*n)
-# space complexity: O(n*n)
+# time complexity: O(n^2)
+# space complexity: O(n^2)
 if __name__ == "__main__":
     for _ in range(int(input().strip())):
         s = input().strip()

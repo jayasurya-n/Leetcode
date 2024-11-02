@@ -1,31 +1,25 @@
 from typing import List,Optional
-import sys
+from collections import deque, defaultdict
+import sys, math, heapq
+
 class Solution:
     def isMatch(self, s: str, p: str) -> bool:
-        l1 = len(s)
-        l2 = len(p)
-
-        dp = [[False]*(l2+1) for _ in range(l1+1)]
+        n1,n2 = len(p),len(s)
+        # dp[i][j]: returns whether pattern p[0:i] can match string s[0:j]
+        dp = [[False]*(n2+1) for _ in range(n1+1)]
         dp[0][0] = True
         
-        for j in range(1,l2+1):
-            if(p[j-1]=='*' and dp[0][j-1]==True):
-                dp[0][j] = True
-
-        for i in range(1,l1+1):
-            for j in range(1,l2+1):
-                if(s[i-1]==p[j-1] or p[j-1]=='?'):
-                    dp[i][j] = dp[i-1][j-1]
-                elif(p[j-1]=='*'):
-                    dp[i][j] = dp[i-1][j] or dp[i][j-1]
-                else:
-                    dp[i][j] = False
-        for row in dp:print(row)
-        return dp[l1][l2]
-
-
-# time complexity: O(l1*l2)
-# space complexity: O(l1*l2)
+        for i in range(1,n1+1):
+            if(p[i-1]=='*'):dp[i][0] = dp[i-1][0]
+        
+        for i in range(1,n1+1):
+            for j in range(1,n2+1):
+                if(p[i-1]==s[j-1] or p[i-1]=='?'):dp[i][j] = dp[i-1][j-1]
+                elif(p[i-1]=='*'):dp[i][j] = dp[i][j-1] or dp[i-1][j]      
+        return dp[n1][n2]
+                
+# time complexity: O(mn)
+# space complexity: O(mn)
 if __name__ == "__main__":
     for _ in range(int(input().strip())):
         s = input().strip()
