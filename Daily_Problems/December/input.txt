@@ -1,7 +1,2 @@
-6
-lkwwdddddnnnnnynnnnl
-eccdnmcnkl
-cccerrrecdcdccedecdcccddeeeddcdcddedccdceeedccecde
-aaaa
-abcdef
-abcaba
+1
+2 1 3 4 5 2
