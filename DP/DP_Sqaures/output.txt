@@ -1,4 +1,6 @@
-True
-True
-True
-True
+3 [3]
+5 [3, 5]
+7 [3]
+9 []
+12 [12]
+lee(t(c)o)de
