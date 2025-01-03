@@ -1,0 +1,4 @@
+Binary Tree: 2 3 5 8 13 21 34 
+Binary Tree: 2 5 3 8 13 21 34 
+Binary Tree: 7 11 13 
+Binary Tree: 7 13 11 
