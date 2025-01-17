@@ -1,0 +1,11 @@
+1
+Set ith bit: 11
+Clear ith bit: 9
+Toggle ith bit: 9
+remove last set bit: 10
+Is power of 2: False
+Is odd: True
+Swap a,b: 7 2
+Total set bits-method1: 3
+Total set bits-method2: 3
+None
