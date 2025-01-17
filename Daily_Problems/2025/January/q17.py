@@ -1,15 +1,13 @@
 from typing import List,Optional
 from collections import deque, defaultdict
-import sys, math, heapq
+import sys, math, heapq, bisect
 
 class Solution:
-    def minSwaps(self, s: str) -> int:
-        cnt = 0
-        for ch in s:
-            if(ch=='['):cnt+=1
-            elif(cnt>0 and ch==']'):cnt-=1
-        return (cnt+1)//2
-                
+    def doesValidArrayExist(self, derived: List[int]) -> bool:
+        sum = 0
+        for num in derived:sum^=num
+        return sum==0
+
 # time complexity: O(n)
 # space complexity: O(1)
 if __name__ == "__main__":
