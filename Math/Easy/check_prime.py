@@ -9,9 +9,8 @@ class Solution:
             if(n%i==0):return False
         return true
 
-
-# time complexity: O()
-# space complexity: O()
+# time complexity: O(n*0.5)
+# space complexity: O(1)
 if __name__ == "__main__":
     for _ in range(int(input().strip())):
         n = int(input().strip())
