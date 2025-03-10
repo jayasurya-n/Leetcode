@@ -1,0 +1,55 @@
+{
+	// Place your global snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	"Binary Tree Template": {
+		"scope": "python",
+		"prefix": "binaryTree",
+		"body": [
+			"class TreeNode:",
+			"    def __init__(self, val, left=None, right=None):",
+			"        self.val = val",
+			"        self.left = left",
+			"        self.right = right",
+            "",
+			"class BinaryTree:",
+			"    def __init__(self):",
+			"        self.root = None",
+			"",
+			"    def createBinrayTree(self,arr):",
+			"        if(arr==[] or arr[0]=='None'):return None",
+			"        root = TreeNode(int(arr[0]))",
+			"        q = deque([root])",
+			"        i = 1",
+			"        while(q):",
+			"            node = q.popleft()",
+			"            if(i<len(arr)):",
+			"                if(arr[i]!='None'):",
+			"                    node.left = TreeNode(int(arr[i]))",
+			"                    q.append(node.left)",
+			"                i+=1",
+			"            if(i<len(arr)):",
+			"                if(arr[i]!='None'):",
+			"                    node.right = TreeNode(int(arr[i]))",
+			"                    q.append(node.right)",
+			"                i+=1",
+			"        return root",
+			"",
+			"def printBinaryTree(root):",
+			"    if(root==None):return",
+			"    q = deque([root])",
+			"    print(\"Binary Tree:\", end=\" \")",
+			"    while q:",
+			"        node = q.popleft()",
+			"        print(node.val,end=\" \")",
+			"        if(node.left):q.append(node.left)",
+			"        if(node.right):q.append(node.right)",
+			"    print()",
+			""
+		 ],
+		"description": "Binary Tree Template"
+	}
+}

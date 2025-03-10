@@ -1,5 +1,7 @@
 from typing import List,Optional
-import sys
+from collections import deque, defaultdict
+import sys, math, heapq, bisect
+
 class Solution:
     def maxProfit(self, prices: list[int]) -> int:
         n = len(prices)
@@ -7,8 +9,8 @@ class Solution:
 
         # dp[i][buy] = max profit we can generate from day i to n-1, 
         # with and option to buy or sell the stock depending on value
-        # buy = 1 means option to buy and no selling
-        # buy = 0 means option to sell and no buying 
+        # buy = 1 means can buy but no selling
+        # buy = 0 means can sell but no buying 
 
         for i in range(n-1,-1,-1):
             for buy in [0,1]:

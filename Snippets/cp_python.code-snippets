@@ -1,0 +1,62 @@
+{
+	// Place your global snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	"Python CP Template": {
+		"scope": "python",
+		"prefix": "cp_python",
+		"body": [
+			"from typing import List,Optional",
+			"from collections import deque, defaultdict",
+			"import sys, heapq, bisect",
+			"from math import ceil, floor, gcd, sqrt, log",
+			"",
+			"si = lambda: input().strip()",
+			"ii = lambda: int(si())",
+			"lsi = lambda: list(input().strip().split())",
+			"lii = lambda: list(map(int,input().strip().split()))",
+			"",
+			"def factorial(n,mod):",
+			"    fac = [1]*n",
+			"    for i in range(1,n):",
+            "        fac[i] = (fac[i-1]*i)%mod",
+			"    return fac",
+			"",
+			"def nCr(n,r,fac,mod):",
+			"    if(n<r or n<0 or r<0):return 0",
+			"    return fac[n]*pow(fac[r],mod-2,mod)*pow(fac[n-r],mod-2,mod)",
+			"",
+			"def prefixSum1D(arr,n):",
+			"    prefix = [0]*n",
+			"    prefix[0] = arr[0]",
+            "    for i in range(1,n):prefix[i] = prefix[i-1]+arr[i]",
+			"    return prefix",
+			"",
+			"def prefixSum2D(arr,m,n):",
+			"    prefix = [[0]*n for _ in range(m)]",
+            "    for i in range(m):",
+            "        for j in range(n):",
+			"            prefix[i][j] = arr[i][j]",
+			"            if i>0:prefix[i][j] += prefix[i-1][j]",
+			"            if j>0:prefix[a][b] += prefix[i][j-1]",
+			"            if i>0 and j>0:prefix[i][j] -= prefix[i-1][j-1]",
+			"    return prefix",
+			"",
+			"class Solution:",
+			"    def run(self):",
+			"        n = ii()",
+			"        arr = lii()",
+			"",
+			"if __name__ == \"__main__\":",
+			"    # fac = factorial(n=2*(10**5)+5,mod=10**9+7)",
+			"    # yes,no = \"YES\",\"NO\"",
+			"    for _ in range(int(input().strip())):",
+			"        ans = Solution().run()",
+			"        print(ans)"
+		 ],
+		"description": "Python CP Template"
+	}
+}

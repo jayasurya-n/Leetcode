@@ -1,0 +1,26 @@
+{
+	// Place your global snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	"Binary Search Template": {
+		"scope": "python",
+		"prefix": "binarySearch",
+		"body": [
+			"def bsIndex(nums,target):",
+			"    # works like bisect.left",
+			"    # if target is lesser than smallest then index=0",
+			"    # if target is larger than largest  then index=n",
+			"    low,high = 0,len(nums)-1",
+			"    while(low<=high):",
+			"        mid = (low+high)//2",
+			"        if(nums[mid]>=target):high = mid-1",
+			"        else:low = mid+1",
+			"    return low",
+            "",
+		 ],
+		"description": "Binary Search Template"
+	}
+}

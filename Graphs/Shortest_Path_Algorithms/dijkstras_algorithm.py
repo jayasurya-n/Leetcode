@@ -8,7 +8,7 @@ class Solution:
         distance = [sys.maxsize]*n
         distance[src] = 0
         while pq:
-            d,u = heapq.heappop(pq)    
+            d,u = heapq.heappop(pq)
             for v,w in adj[u]:
                 if(distance[v]>d+w):
                     distance[v] = d+w
