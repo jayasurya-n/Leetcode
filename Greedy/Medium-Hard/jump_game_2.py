@@ -1,23 +1,26 @@
-from typing import List
-import sys
+from typing import List,Optional
+from collections import deque, defaultdict
+import sys, math, heapq, bisect
+
 class Solution:
     def jump(self, nums: List[int]) -> int:
         if(len(nums)==1):return 0
+        if(nums[0]==0):return -1
+        maxReach = nums[0] 
+        steps = nums[0]
+        jumps = 1
         
-        maxReach = 0
-        lastIndex = 0
-        jumps = 0
-
-        for i in range(len(nums)-1):
+        for i in range(1,len(nums)-1):
             maxReach = max(maxReach,i+nums[i])
-            if(i==lastIndex):
-                if(maxReach==i):return -1
+            steps-=1
+            if(steps==0):
                 jumps+=1
-                lastIndex = maxReach
+                steps = maxReach-i
+                if(steps<=0):return -1
         return jumps
 
-# time complexity: O(n) 
-# space complexity: O(1) 
+# time complexity: O(n)
+# space complexity: O(1)
 if __name__ == "__main__":
     t = int(input().strip())
     for i in range(t):
