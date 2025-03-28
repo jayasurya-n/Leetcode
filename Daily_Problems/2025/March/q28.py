@@ -87,6 +87,7 @@ class Solution:
         # for num in queries:ans.append(bsIndex(effort,num))
         # return ans
 
+
         m,n,k = len(grid),len(grid[0]),len(queries)
         sorted_queries = [(num,i) for i,num in enumerate(queries)]
         sorted_queries.sort()

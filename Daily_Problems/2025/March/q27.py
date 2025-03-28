@@ -25,7 +25,6 @@ class Solution:
         #     if(cnt>(i+1)//2 and (hash[major]-cnt)>(n-i-1)//2):return i
         # return -1    
 
-
         n = len(nums)
         major = nums[0]
         cnt = 0
