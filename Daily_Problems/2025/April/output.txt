@@ -1,0 +1,3 @@
+<__main__.TreeNode object at 0x0000024E35E20210>
+<__main__.TreeNode object at 0x0000024E35E20410>
+<__main__.TreeNode object at 0x0000024E35E203D0>
