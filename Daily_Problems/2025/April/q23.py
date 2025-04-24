@@ -8,20 +8,18 @@ lsi = lambda: list(input().strip().split())
 lii = lambda: list(map(int,input().strip().split()))
 
 class Solution:
-    def maxMatrixSum(self, matrix: List[List[int]]) -> int:
-        sum = cnt = 0
-        small = 10**10
-        for i in range(len(matrix)):
-            for j in range(len(matrix[0])):
-                ele = matrix[i][j]
-                sum+=abs(ele)
-                small = min(small,abs(ele))
-                if(ele<0):cnt+=1
+    def countLargestGroup(self, n: int) -> int:
+        hash = [0]*37
+        for num in range(1,n+1):
+            sum = 0
+            while num:
+                sum+=num%10
+                num//=10
+            hash[sum]+=1
         
-        if(cnt%2==0):return sum
-        return sum-2*small
+        return hash.count(max(hash))
 
-# time complexity: O(mn)
+# time complexity: O(n)
 # space complexity: O(1)
 if __name__ == "__main__":
     for _ in range(ii()):
