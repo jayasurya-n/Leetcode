@@ -52,6 +52,6 @@ class Solution:
 # space complexity: O(n+m)
 if __name__ == "__main__":
     for _ in range(ii()):
-        n = ii()
-        arr = lii()
-        print(Solution().func(arr,n))
+        edges1 = lii()
+        edges2 = lii()
+        print(Solution().maxTargetNodes(edges1,edges2))
