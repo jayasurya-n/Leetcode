@@ -8,13 +8,17 @@ lsi = lambda: list(input().strip().split())
 lii = lambda: list(map(int,input().strip().split()))
 
 class Solution:
-    def maxDifference(self, s: str, k: int) -> int:
-        
-        pass
+    def maxSubsequence(self, nums: List[int], k: int) -> List[int]:
+        n = len(nums)
+        temp = [(nums[i],i) for i in range(n)]
+        temp.sort(reverse=True)
 
+        ans = temp[:k]
+        ans.sort(key=lambda x:x[1])
+        return [val for val,_ in ans]    
 
-# time complexity: O()
-# space complexity: O()
+# time complexity: O(nlogn)
+# space complexity: O(n)
 if __name__ == "__main__":
     for _ in range(ii()):
         n = ii()
