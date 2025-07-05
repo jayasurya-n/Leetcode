@@ -19,7 +19,6 @@ class Solution:
             if(num==freq[num]):ans = num
         return ans
 
-
 # time complexity: O(n)
 # space complexity: O(n)
 if __name__ == "__main__":
