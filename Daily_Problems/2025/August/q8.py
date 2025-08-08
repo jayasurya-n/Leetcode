@@ -31,6 +31,7 @@ class Solution:
         # return dp[m][m]
 
         m = math.ceil(n/25)
+        if(m==0):return 0.5
 
         def solve(i,j):
             if(i<=0 and j<=0):return 0.5
