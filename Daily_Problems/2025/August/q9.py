@@ -9,10 +9,17 @@ lii = lambda: list(map(int,input().strip().split()))
 
 class Solution:
     def isPowerOfTwo(self, n: int) -> bool:
-        return n&(n-1)==0 and n!=0
+        # return n>0 and n&(n-1)==0
+        
+        if(n<=0):return False
+        curr = 1
+        for i in range(32):
+            if(curr==n):return True
+            curr*=2
+        return False 
 
-# time complexity: O(1)
-# space complexity: O(1)
+# time complexity: O(1),O(32)
+# space complexity: O(1),O(1)
 if __name__ == "__main__":
     for _ in range(ii()):
         n = ii()
