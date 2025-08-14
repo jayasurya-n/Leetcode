@@ -16,6 +16,7 @@ class Solution:
         
         return str(ans)*3 if ans!=-1 else ''
 
+
 # time complexity: O(n)
 # space complexity: O(1)
 if __name__ == "__main__":
